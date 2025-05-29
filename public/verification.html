@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vérification en cours...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #message {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+  <h2>Vérification de votre e-mail...</h2>
+  <p id="message">Veuillez patienter...</p>
+
+  <script>
+    async function verifierEmail() {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const messageElement = document.getElementById('message');
+
+      if (!token) {
+        messageElement.textContent = "❌ Token manquant.";
+        messageElement.classList.add('error');
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/verify-email?token=${token}`);
+        const text = await response.text();
+
+        messageElement.textContent = text;
+
+        if (response.ok) {
+          messageElement.classList.add('success');
+          setTimeout(() => {
+            window.location.href = "/connexion.html";
+          }, 4000);
+        } else {
+          messageElement.classList.add('error');
+        }
+      } catch (err) {
+        messageElement.textContent = "❌ Erreur de vérification.";
+        messageElement.classList.add('error');
+        console.error(err);
+      }
+    }
+
+    verifierEmail();
+  </script>
+</body>
+</html>

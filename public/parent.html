@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Espace Parent - Recrutement Enseignants</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+
+    :root {
+      --primary-color: #007BFF;
+      --secondary-color: #00C9A7;
+      --background: #f8f9fa;
+      --text-dark: #2c3e50;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui;
+      background-color: var(--background);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), #0062cc);
+      color: white;
+      padding: 25px 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .header-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .header-buttons button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 25px 0;
+      justify-content: center;
+    }
+
+    .filters select {
+      padding: 12px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+      min-width: 180px;
+    }
+
+    .filters button {
+      padding: 12px 30px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #resultats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    .enseignant {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .enseignant img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+    }
+
+    @media (max-width: 768px) {
+      .filters {
+        flex-direction: column;
+      }
+      
+      .filters select {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+  <header>
+    <h1><i class="fas fa-chalkboard-teacher"></i> CoursDomicile - Espace Parent</h1>
+  </header>
+
+  <div class="header-buttons">
+    <button class="btn-accueil" onclick="window.location.href='index.html'">
+      <i class="fas fa-home"></i>Accueil
+    </button>
+    <button class="btn-reset" onclick="reinitialiserFiltres()">
+      <i class="fas fa-sync-alt"></i>Réinitialiser
+    </button>
+  </div>
+
+  <div class="container">
+    <h2><i class="fas fa-search"></i> Rechercher un Enseignant</h2>
+
+    <div class="filters">
+      <select id="qualification">
+        <option value="">Qualification</option>
+        <option>Bac</option>
+        <option>Licence</option>
+        <option>Master</option>
+      </select>
+
+      <select id="specialite">
+        <option value="">Spécialité</option>
+        <option>Mathématiques</option>
+        <option>Physique-Chimie</option>
+        <option>Français</option>
+        <option>Anglais</option>
+      </select>
+
+      <select id="disponibilite">
+        <option value="">Disponibilité</option>
+        <option>Matin</option>
+        <option>Après-midi</option>
+        <option>Soir</option>
+      </select>
+
+      <select id="ville">
+        <option value="">Ville</option>
+        <option>Abidjan</option>
+        <option>Bouaké</option>
+        <option>Yamoussoukro</option>
+      </select>
+
+      <button onclick="rechercherEnseignants()">
+        <i class="fas fa-filter"></i> Filtrer
+      </button>
+    </div>
+
+    <div id="resultats">
+      <div class="enseignant">
+        <img src="profil.jpg" alt="Enseignant">
+        <p><i class="fas fa-user"></i> Nom Prénom</p>
+        <p><i class="fas fa-graduation-cap"></i> Master</p>
+        <p><i class="fas fa-book"></i> Mathématiques</p>
+        <p><i class="fas fa-clock"></i> Matin</p>
+        <a href="#"><i class="fas fa-file-download"></i> CV</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contacter</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/scriptParent.js"></script>
+</body>
+</html>

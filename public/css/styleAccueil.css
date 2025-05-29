@@ -1,0 +1,99 @@
+/* Slider container */
+.slider-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+  gap: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Cache la scrollbar */
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+.slider-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Carte de chaque enseignant */
+.slider-card {
+  flex: 0 0 250px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+}
+
+.slider-card:hover {
+  transform: translateY(-5px);
+}
+
+.slider-photo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.slider-info {
+  padding: 15px;
+}
+
+.slider-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.slider-info p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #666;
+}
+.teacher-card {
+  width: 250px;
+  margin: 10px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.teacher-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.teacher-card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.teacher-card p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.btn-recruter {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-recruter:hover {
+  background-color: #218838;
+}

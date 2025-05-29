@@ -1,0 +1,474 @@
+/* Styles généraux pour rendre responsive */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Centrage du contenu principal */
+.main-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Texte responsive */
+h1, h2, p {
+  word-wrap: break-word;
+}
+
+/* Boutons */
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Formulaires */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Conteneur flexible pour les sections */
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flex > * {
+  flex: 1 1 300px;
+}
+
+/* Responsive navigation si tu en as */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+/* Media Queries pour mobile */
+@media screen and (max-width: 768px) {
+  .main-container {
+    padding: 10px;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Conteneur principal centré et adaptatif */
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre centré */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Champs du formulaire */
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Bouton */
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Messages */
+.success-message,
+.error-message {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Responsive mobile */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-container h2 {
+    font-size: 20px;
+  }
+
+  .form-container button {
+    font-size: 15px;
+  }
+}
+
+/* ====== Styles généraux pour formulaire ====== */
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* ====== Messages ====== */
+.success-message,
+.error-message {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* ====== PAGE PARENT ====== */
+.teacher-card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.teacher-card:hover {
+  transform: scale(1.02);
+}
+
+.teacher-card img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.teacher-card .btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teacher-card .btns a {
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  background-color: #28a745;
+}
+
+.teacher-card .btns a.call {
+  background-color: #007bff;
+}
+
+.teacher-card .btns a.whatsapp {
+  background-color: #25d366;
+}
+
+/* ====== PAGE DASHBOARD ====== */
+.dashboard-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.dashboard-info {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ====== Responsive pour toutes les pages ====== */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .form-container,
+  .dashboard-container {
+    padding: 15px;
+  }
+
+  .form-container h2,
+  .dashboard-info h2 {
+    font-size: 20px;
+  }
+
+  .form-container button {
+    font-size: 15px;
+  }
+
+  .teacher-card {
+    padding: 10px;
+  }
+
+  .teacher-card img {
+    max-width: 120px;
+  }
+
+  .teacher-card .btns {
+    flex-direction: column;
+  }
+
+  .dashboard-info {
+    font-size: 15px;
+  }
+}
+
+/* ====== PAGE modifier.html ====== */
+.modifier-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modifier-container h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modifier-container input,
+.modifier-container select,
+.modifier-container textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.modifier-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modifier-container button:hover {
+  background-color: #e0a800;
+}
+
+/* ====== PAGE enseignant.html ====== */
+.enseignant-details {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.enseignant-details img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+.enseignant-details h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.enseignant-details p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* ====== Responsive pour modifier.html et enseignant.html ====== */
+@media screen and (max-width: 768px) {
+  .modifier-container,
+  .enseignant-details {
+    padding: 15px;
+  }
+
+  .modifier-container h2,
+  .enseignant-details h2 {
+    font-size: 20px;
+  }
+
+  .modifier-container input,
+  .modifier-container select,
+  .modifier-container textarea {
+    font-size: 15px;
+  }
+
+  .enseignant-details p {
+    font-size: 15px;
+  }
+}
+
+/* Loader Styles */
+#loader-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+#loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Thème par défaut (clair) */
+body {
+  background-color: white;
+  color: black;
+}
+
+/* Mode sombre */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode header,
+.dark-mode footer,
+.dark-mode section,
+.dark-mode div {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+button#toggle-dark-mode {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  padding: 10px 15px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

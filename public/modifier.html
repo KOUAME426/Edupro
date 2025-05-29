@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <title>Modifier mes informations</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+  <div class="container">
+    <h2>Modifier mes informations</h2>
+    <form id="modifierForm" enctype="multipart/form-data" method="POST">
+
+      <label>Nom complet</label>
+      <input type="text" name="fullname" id="fullname" required>
+
+      <label>Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label>Téléphone</label>
+      <input type="text" name="telephone" id="telephone" required>
+
+      <label>Spécialité</label>
+      <input type="text" name="specialite" id="specialite" required>
+
+      <label>Qualification</label>
+      <input type="text" name="qualification" id="qualification" required>
+
+      <label>Disponibilité</label>
+      <input type="text" name="disponibilite" id="disponibilite" required>
+
+      <label>Ville</label>
+      <input type="text" name="ville" id="ville">
+
+      <label>Commune</label>
+      <input type="text" name="commune" id="commune">
+
+      <label>Nouvelle Photo (facultatif)</label>
+      <input type="file" name="photo" accept="image/*">
+
+      <label>Nouveau CV (facultatif)</label>
+      <input type="file" name="cv" accept=".pdf,.doc,.docx">
+
+      <button type="submit">Mettre à jour</button>
+    </form>
+  </div>
+
+  <script src="js/scriptModifier.js"></script>
+</body>
+</html>

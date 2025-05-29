@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseau d'Experts Pédagogiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        #enseignants {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            margin: 10px auto 20px;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: #7f8c8d;
+        }
+
+        /* Styles du slider */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        #enseignant-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            padding: 10px 0;
+        }
+
+        .enseignant-card {
+            flex: 0 0 calc(25% - 30px);
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin: 0 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
+        }
+
+        .enseignant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .enseignant-card:hover .card-header img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .matiere {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-body p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .competences {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .competence-tag {
+            background: #ecf0f1;
+            color: #34495e;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding: 15px 25px;
+        }
+
+        .experience {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .experience i {
+            color: #f39c12;
+            margin-right: 5px;
+        }
+
+        .btn-contact {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background: #2980b9;
+        }
+
+        /* Navigation du slider */
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-btn:hover {
+            background: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #bdc3c7;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: #3498db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .enseignant-card {
+                flex: 0 0 calc(33.333% - 30px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .enseignant-card {
+                flex: 0 0 calc(50% - 30px);
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #enseignants {
+                padding: 50px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .enseignant-card {
+                flex: 0 0 calc(100% - 30px);
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Animation pour le chargement des cartes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .enseignant-card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        /* Délai différent pour chaque carte */
+        .enseignant-card:nth-child(1) { animation-delay: 0.1s; }
+        .enseignant-card:nth-child(2) { animation-delay: 0.2s; }
+        .enseignant-card:nth-child(3) { animation-delay: 0.3s; }
+        .enseignant-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+    <!-- Notre Réseau d'Experts Pédagogiques -->
+    <section id="enseignants">
+        <h2 class="section-title">Notre Réseau d'Experts Pédagogiques</h2>
+        <p class="section-subtitle">
+            Découvrez nos 500+ enseignants triés sur le volet pour leur expertise et leur pédagogie.
+        </p>
+
+        <div class="slider-container">
+            <div id="enseignant-slider" class="slider">
+                <!-- Les cartes enseignants seront injectées ici par JS -->
+            </div>
+
+            <div class="slider-nav">
+                <button class="slider-btn" id="prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="slider-dots" id="slider-dots">
+                <!-- Les points de navigation seront générés par JS -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Données des enseignants
+        const enseignants = [
+            {
+                nom: "Sophie Martin",
+                matiere: "Mathématiques",
+                experience: "12 ans",
+                description: "Spécialiste en pédagogie différenciée, Sophie rend les mathématiques accessibles à tous grâce à sa méthode innovante.",
+                competences: ["Algèbre", "Géométrie", "Statistiques", "Pédagogie Montessori"],
+                badge: "Disponible"
+            },
+            {
+                nom: "Thomas Dubois",
+                matiere: "Physique-Chimie",
+                experience: "8 ans",
+                description: "Passionné par les sciences expérimentales, Thomas utilise des démonstrations pratiques pour illustrer les concepts théoriques.",
+                competences: ["Mécanique", "Chimie organique", "Astrophysique", "Méthode scientifique"],
+                badge: "Nouveau"
+            },
+            {
+                nom: "Émilie Rousseau",
+                matiere: "Français",
+                experience: "15 ans",
+                description: "Ancienne correctrice d'édition, Émilie transmet son amour de la langue française avec rigueur et passion.",
+                competences: ["Littérature", "Grammaire", "Dissertation", "Expression orale"],
+                badge: "Populaire"
+            },
+            {
+                nom: "Marc Lefevre",
+                matiere: "Histoire-Géographie",
+                experience: "10 ans",
+                description: "Marc rend l'histoire vivante à travers des récits captivants et des analyses documentées des enjeux géopolitiques.",
+                competences: ["Histoire moderne", "Géopolitique", "Civilisations", "Cartographie"],
+                badge: "Disponible"
+            },
+            {
+                nom: "Laura Petit",
+                matiere: "SVT",
+                experience: "7 ans",
+                description: "Docteure en biologie, Laura partage sa passion pour les sciences du vivant avec des exemples concrets et des expériences.",
+                competences: ["Biologie moléculaire", "Écologie", "Génétique", "Physiologie"],
+                badge: "Nouveau"
+            },
+            {
+                nom: "Nicolas Bernard",
+                matiere: "Philosophie",
+                experience: "14 ans",
+                description: "Nicolas guide ses élèves dans l'art de la réflexion critique et de la construction d'arguments solides.",
+                competences: ["Épistémologie", "Éthique", "Logique", "Histoire de la philosophie"],
+                badge: "Expert"
+            },
+            {
+                nom: "Chloé Moreau",
+                matiere: "Anglais",
+                experience: "9 ans",
+                description: "Bilingue et ayant vécu 5 ans à Londres, Chloé privilégie l'immersion et les échanges authentiques.",
+                competences: ["TOEFL", "Business English", "Littérature anglaise", "Préparation IELTS"],
+                badge: "Disponible"
+            },
+            {
+                nom: "Antoine Girard",
+                matiere: "Informatique",
+                experience: "6 ans",
+                description: "Développeur professionnel devenu enseignant, Antoine forme aux langages modernes et aux bonnes pratiques du code.",
+                competences: ["Python", "JavaScript", "Algorithmie", "Développement web"],
+                badge: "Expert"
+            }
+        ];
+
+        // Éléments DOM
+        const slider = document.getElementById('enseignant-slider');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dotsContainer = document.getElementById('slider-dots');
+
+        // Configuration du slider
+        let currentIndex = 0;
+        const cardsPerView = () => {
+            if (window.innerWidth < 576) return 1;
+            if (window.innerWidth < 768) return 2;
+            if (window.innerWidth < 1024) return 3;
+            return 4;
+        };
+
+        // Générer les cartes enseignants
+        function renderEnseignants() {
+            slider.innerHTML = '';
+            
+            enseignants.forEach((enseignant, index) => {
+                const card = document.createElement('div');
+                card.className = 'enseignant-card';
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="https://randomuser.me/api/portraits/${index % 2 === 0 ? 'women' : 'men'}/${index}.jpg" alt="${enseignant.nom}">
+                        <span class="card-badge">${enseignant.badge}</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>${enseignant.nom}</h3>
+                        <div class="matiere">${enseignant.matiere}</div>
+                        <p>${enseignant.description}</p>
+                        <div class="competences">
+                            ${enseignant.competences.map(comp => `<span class="competence-tag">${comp}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="experience"><i class="fas fa-star"></i> ${enseignant.experience} d'expérience</div>
+                        <button class="btn-contact">Contacter</button>
+                    </div>
+                `;
+                
+                slider.appendChild(card);
+            });
+            
+            updateSlider();
+            createDots();
+        }
+
+        // Créer les points de navigation
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            const dotCount = Math.ceil(enseignants.length / cardsPerView());
+            
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === currentIndex) dot.classList.add('active');
+                
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateSlider();
+                    updateDots();
+                });
+                
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Mettre à jour les points actifs
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Mettre à jour la position du slider
+        function updateSlider() {
+            const cardWidth = document.querySelector('.enseignant-card').offsetWidth + 30; // 30px de marge
+            slider.style.transform = `translateX(-${currentIndex * cardWidth * cardsPerView()}px)`;
+            updateDots();
+        }
+
+        // Navigation
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = Math.ceil(enseignants.length / cardsPerView()) - 1;
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        // Redimensionnement de la fenêtre
+        window.addEventListener('resize', () => {
+            currentIndex = 0;
+            updateSlider();
+            createDots();
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEnseignants();
+            
+            // Simuler le chargement de 500+ enseignants
+            setTimeout(() => {
+                const countElement = document.createElement('div');
+                countElement.style.textAlign = 'center';
+                countElement.style.marginTop = '30px';
+                countElement.style.color = '#7f8c8d';
+                countElement.style.fontStyle = 'italic';
+                countElement.innerHTML = `Plus de 500 enseignants experts disponibles dans notre réseau`;
+                document.querySelector('.slider-container').appendChild(countElement);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

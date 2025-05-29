@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recrutement d'enseignants</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    #resultats {
+      margin-top: 20px;
+    }
+
+    .enseignant {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .enseignant h3 {
+      margin: 0 0 10px 0;
+    }
+
+    .enseignant button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .enseignant button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+  <h2>Rechercher un enseignant</h2>
+
+  <form id="formRecherche">
+    <label for="specialite">Spécialité :</label>
+    <select id="specialite" name="specialite">
+      <option value="">-- Choisissez une spécialité --</option>
+      <option value="Mathématiques">Mathématiques</option>
+      <option value="Physique-Chimie">Physique-Chimie</option>
+      <option value="SVT">SVT</option>
+      <option value="Français">Français</option>
+      <option value="Anglais">Anglais</option>
+      <option value="Histoire-Géo">Histoire-Géo</option>
+    </select>
+
+    <label for="qualification">Qualification :</label>
+    <select id="qualification" name="qualification">
+      <option value="">-- Choisissez une qualification --</option>
+      <option value="Licence">Licence</option>
+      <option value="Master">Master</option>
+      <option value="Doctorat">Doctorat</option>
+      <option value="Professeur certifié">Professeur certifié</option>
+    </select>
+
+    <label for="disponibilite">Disponibilité :</label>
+    <select id="disponibilite" name="disponibilite">
+      <option value="">-- Choisissez une disponibilité --</option>
+      <option value="Matin">Matin</option>
+      <option value="Après-midi">Après-midi</option>
+      <option value="Soir">Soir</option>
+      <option value="Week-end">Week-end</option>
+    </select>
+
+    <br><br>
+    <button type="submit">🔍 Rechercher</button>
+  </form>
+
+  <div id="resultats"></div>
+
+  <script src="js/recherche.js"></script>
+</body>
+</html>

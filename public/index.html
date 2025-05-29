@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="css/styleAccueil.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours à Domicile - TutorPlus</title>
+    <style>
+        /* ===== Variables CSS ===== */
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #FF6B35;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+        }
+
+        /* ===== Reset modernisé ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* ===== Navigation améliorée ===== */
+        nav {
+            background: var(--secondary);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Hero Section améliorée ===== */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+.slideshow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8); /* Augmentation importante (0.4 → 0.8) */
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    max-width: 800px;
+    /* Contraste amélioré sans bandes */
+    text-shadow: 
+        0 1px 1px rgba(0,0,0,0.12),
+        0 2px 2px rgba(0,0,0,0.12),
+        0 4px 4px rgba(0,0,0,0.12),
+        0 8px 8px rgba(0,0,0,0.12),
+        0 16px 16px rgba(0,0,0,0.12);
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    /* Empilement d'ombres pour meilleure lisibilité */
+    text-shadow: 
+        0 1px 1px rgba(0,0,0,0.1),
+        0 2px 2px rgba(0,0,0,0.1),
+        0 4px 4px rgba(0,0,0,0.1);
+}
+
+/* Ajout d'un calque lumineux global */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.12); /* Calque blanc transparent */
+    z-index: 0;
+}
+
+/* ===== Sections communes ===== */
+        section {
+            padding: 6rem 5%;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* ===== À propos amélioré ===== */
+        #apropos {
+            background: var(--light);
+        }
+
+        .apropos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .point {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .point:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ===== Enseignants améliorés ===== */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .teacher-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary);
+        }
+
+        /* ===== Témoignages améliorés ===== */
+        .temoignages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .temoignage-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .photo-temoin img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--primary);
+        }
+
+        /* ===== Contact amélioré ===== */
+       
+
+        /* ===== Footer amélioré ===== */
+        .site-footer {
+            background: var(--secondary);
+            color: white;
+            padding: 2.5rem 1rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        /* Style pour le bouton "Inscription Enseignant" dans la navigation */
+.cta-nav {
+    background: #FF6B35;
+    color: white !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(255, 107, 53, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cta-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 107, 53, 0.3);
+    background: #FF5722;
+}
+
+/* Style pour le bouton "Trouver un professeur" dans le hero */
+.cta-primary {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 8px 24px rgba(52, 152, 219, 0.3);
+}
+
+.cta-primary::before {
+    content: '→';
+    position: absolute;
+    right: -20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(52, 152, 219, 0.4);
+    gap: 1.2rem;
+}
+
+.cta-primary:hover::before {
+    right: 20px;
+    opacity: 1;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+    .cta-nav {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .cta-primary {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+    <!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" img src="img/logo1.jpg" >EduPro+</div>
+        <div class="nav-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#apropos">À propos</a>
+            <a href="#enseignants">Enseignants</a>
+            <a href="#temoignages">Témoignages</a>
+            <a href="#contact">Contact</a>
+            <button id="toggle-dark-mode">🌙 Mode sombre</button>
+
+            <button class="cta-nav" onclick="window.location.href='inscription.html'">
+    Inscription Enseignant
+</button>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section avec Diasporama -->
+    <section class="hero" id="accueil">
+        <div class="slideshow">
+            <div class="slide active" style="background-image: url('img/bg1.jpg')"></div>
+            <div class="slide" style="background-image: url('img/bg2.jpg')"></div>
+            <div class="slide" style="background-image: url('img/bg3.jpg')"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Trouvez le professeur idéal pour vos enfants</h1>
+            <p>Des enseignants qualifiés près de chez vous</p>
+            <button class="cta-primary" onclick="window.location.href='parent.html'">trouver un professeur</button>
+        </div>
+    </section>
+
+    <!-- Notre Réseau d'Experts Pédagogiques -->
+<section id="enseignants">
+  <h2 class="section-title">Notre Réseau d'Experts Pédagogiques</h2>
+  <p class="section-subtitle">
+    Découvrez nos 500+ enseignants triés sur le volet pour leur expertise et leur pédagogie.
+  </p>
+
+  <div id="enseignant-slider" class="slider-container">
+    <!-- Les cartes enseignants seront injectées ici par JS -->
+  </div>
+</section>
+
+   <!-- À propos -->
+<section id="apropos">
+    <div class="apropos-container">
+        <h2 class="section-title">Notre Mission Éducative</h2>
+        
+        <div class="apropos-content">
+            <div class="apropos-text">
+                <p class="lead">Chez TutorPlus, nous révolutionnons l'accompagnement scolaire depuis 2018 en connectant <span class="highlight">familles exigeantes</span> et <span class="highlight">enseignants passionnés</span>.</p>
+
+                <div class="key-points">
+                    <div class="point">
+                        <div class="icon">🎯</div>
+                        <h3>Sur-Mesure</h3>
+                        <p>Des profils triés sur le volet selon vos critères spécifiques</p>
+                    </div>
+                    
+                    <div class="point">
+                        <div class="icon">📈</div>
+                        <h3>Résultats Garantis</h3>
+                        <p>92% de nos élèves observent une progression en 3 mois</p>
+                    </div>
+                    
+                    <div class="point">
+                        <div class="icon">🔒</div>
+                        <h3>Sécurisé</h3>
+                        <p>Tous nos enseignants sont certifiés et vérifiés</p>
+                    </div>
+                </div>
+
+                <blockquote class="citation">
+                    "L'éducation est l'arme la plus puissante pour changer le monde"
+                    <cite>- Nelson Mandela</cite>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Styles existants à conserver */
+    #apropos {
+        background: #f9f9f9;
+        padding: 5rem 2rem;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+        color: #2c3e50;
+    }
+
+    /* Nouveaux styles */
+    .apropos-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .lead {
+        font-size: 1.4rem;
+        text-align: center;
+        margin: 0 auto 3rem;
+        max-width: 800px;
+        line-height: 1.6;
+    }
+
+    .highlight {
+        color: #3498db;
+        font-weight: 600;
+    }
+
+    .key-points {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 4rem 0;
+    }
+
+    .point {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .point:hover {
+        transform: translateY(-10px);
+    }
+
+    .icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .citation {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        margin: 3rem auto;
+        padding: 2rem;
+        max-width: 600px;
+        border-left: 4px solid #3498db;
+        background: rgba(52, 152, 219, 0.05);
+    }
+
+    cite {
+        display: block;
+        margin-top: 1rem;
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .lead {
+            font-size: 1.2rem;
+        }
+        
+        .key-points {
+            grid-template-columns: 1fr;
+        }
+    }
+
+     /* Nouveaux styles */
+    .enseignants-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .lead-text {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 3rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .teachers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .teacher-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .teacher-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .teacher-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #3498db;
+    }
+
+    .teacher-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 1rem;
+        border: 3px solid #3498db;
+    }
+
+    .teacher-rating {
+        color: #f1c40f;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+    }
+
+    .teacher-badge {
+        background: #3498db;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin: 0.5rem 0;
+    }
+
+    .cta-wrapper {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .cta-text {
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-button {
+        background: #3498db;
+        color: white;
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .cta-button:hover {
+        background: #2980b9;
+        transform: scale(1.05);
+    }
+
+    .arrow {
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+    }
+
+    .cta-button:hover .arrow {
+        transform: translateX(3px);
+    }
+
+    #temoignages {
+    padding: 4rem 1rem;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.temoignages-titre {
+    color: #2c3e50;
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+}
+
+.temoignages-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.temoignage-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 1rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.temoignage-card:hover {
+    transform: translateY(-5px);
+}
+
+.photo-temoin img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3498db;
+    margin-bottom: 1.5rem;
+}
+
+.texte-temoignage p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.auteur-temoignage {
+    margin-top: 1rem;
+}
+
+.auteur-temoignage strong {
+    color: #2c3e50;
+    display: block;
+}
+
+.auteur-temoignage span {
+    color: #3498db;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .temoignages-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .temoignage-card {
+        margin: 1rem 0;
+    }
+}
+
+#contact {
+        background: #f8fbfe;
+        padding: 5rem 1rem;
+    }
+
+    .contact-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 3rem;
+        font-size: 2.3rem;
+    }
+
+    /* Formulaire */
+    .contact-form {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(52, 152, 219, 0.1);
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 1.8rem;
+    }
+
+    .input-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.3;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 1rem 3rem 1rem 1.5rem;
+        border: 2px solid #e3f2fd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #f8fbfe;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: #3498db;
+        background: white;
+        box-shadow: 0 3px 15px rgba(52, 152, 219, 0.1);
+    }
+
+    textarea {
+        height: 150px;
+        resize: vertical;
+        padding-top: 1.5rem;
+    }
+
+    .submit-btn {
+        background: #3498db;
+        color: white;
+        width: 100%;
+        padding: 1.2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .submit-btn:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .send-icon {
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+    }
+
+    .submit-btn:hover .send-icon {
+        transform: translateX(3px);
+    }
+
+    @media (max-width: 768px) {
+        .contact-form {
+            padding: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        input, textarea {
+            padding: 0.8rem;
+        }
+    }
+
+    /* Styles du pied de page */
+.site-footer {
+    background: #2c3e50;
+    color: white;
+    padding: 2.5rem 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-info h3 {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-details a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 1rem;
+}
+
+.contact-details a:hover {
+    color: #3498db;
+}
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .contact-details {
+        flex-direction: column;
+    }
+    
+    .footer-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .contact-details a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Modification de l'espacement des sections */
+section {
+    padding: 3rem 2rem; /* Réduit de 5rem à 3rem */
+}
+
+/* Ajustements spécifiques pour certaines sections */
+#apropos {
+    padding: 3rem 2rem; /* Ajustement padding */
+}
+
+#contact {
+    padding: 3rem 1rem; /* Ajustement padding */
+}
+
+.section-title {
+    margin-bottom: 1.5rem; /* Réduit de 3rem */
+}
+
+/* Ajustement espacement témoignages */
+.temoignages-container {
+    gap: 1.5rem; /* Réduit de 2rem */
+}
+
+/* Ajustement espacement enseignants */
+.teachers-container {
+    gap: 1.5rem; /* Réduit de 2rem */
+    padding: 1rem; /* Réduit de 2rem */
+}
+
+/* Ajustement citation */
+.citation {
+    margin: 2rem auto; /* Réduit de 3rem */
+}
+
+#experts {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+}
+
+.slider-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+.teacher-card {
+  min-width: 250px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  padding: 15px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.teacher-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+</style>
+
+            <!-- Les enseignants seront chargés dynamiquement -->
+        </div>
+
+        <div class="cta-wrapper">
+            <p class="cta-text">Trouvez le profil qui correspond à vos besoins !</p>
+            <button class="cta-button" onclick="window.location.href='parent.html'">
+                Recruter un Enseignant
+                <span class="arrow">→</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+     <!-- Section Témoignages -->
+<section id="temoignages">
+    <h2 class="temoignages-titre">Témoignages de nos familles</h2>
+    
+    <div class="temoignages-container">
+        <!-- Témoignage 1 -->
+        <div class="temoignage-card">
+            <div class="photo-temoin">
+                <img src="img/madame-koffi.jpeg" alt="Mme Koffi">
+            </div>
+            <div class="texte-temoignage">
+                <p>"Grâce à votre plateforme, mon fils a augmenté sa moyenne de 3 points en maths en 2 mois. Je recommande !"</p>
+                <div class="auteur-temoignage">
+                    <strong>— Mme Koffi</strong>
+                    <span>Mère de Julien, 4ème</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Témoignage 2 -->
+        <div class="temoignage-card">
+            <div class="photo-temoin">
+                <img src="img/serge.jpeg" alt="Serge Bruno">
+            </div>
+            <div class="texte-temoignage">
+                <p>"Service sérieux et professionnel. Notre professeur d'anglais est parfaitement adapté aux besoins de notre fille."</p>
+                <div class="auteur-temoignage">
+                    <strong>— Serge B.</strong>
+                    <span>Père de Clara, Terminale</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Contact-->
+<section id="contact">
+  <div class="contact-container">
+    <h2 class="section-title">Discutons de vos besoins</h2>
+
+    <form class="contact-form" >
+      <div class="form-group">
+        <input type="text" name="nom" placeholder="Votre nom" required />
+        <span class="input-icon">👤</span>
+      </div>
+
+      <div class="form-group">
+        <input type="email" name="email" placeholder="votre@email.com" required />
+        <span class="input-icon">✉️</span>
+      </div>
+
+      <div class="form-group">
+        <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+        <span class="input-icon">✍️</span>
+      </div>
+
+<div class="form-group">
+  <label for="captcha">Combien font 3 + 5 ?</label>
+  <input type="text" id="captcha" name="captcha" required />
+</div>
+
+      <button type="submit" class="submit-btn">
+        Envoyer le message
+        <span class="send-icon">🚀</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+
+    <!-- Pied de page -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <h3>Kouamé Kouassi Sylvain</h3>
+            <div class="contact-details">
+                <a href="tel:+2250777237463">📱 +225 07 77 23 74 63</a>
+                <a href="mailto:kouamesylvain64@gmail.com">📧 kouamesylvain64@gmail.com</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2024 Tous droits réservés - Cours à Domicile</p>
+        </div>
+    </div>
+</footer>
+<script>
+  document.querySelector('.contact-form').addEventListener('submit', async function (e) {
+    e.preventDefault(); // empêche l'envoi automatique
+
+    const nom = this.nom.value;
+    const email = this.email.value;
+    const message = this.message.value;
+    const captcha = this.captcha.value.trim();
+
+    if (captcha !== "8") {
+      alert("❌ CAPTCHA incorrect. Essayez encore.");
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nom, email, message })
+      });
+
+      if (response.ok) {
+        alert("✅ Message envoyé avec succès !");
+        window.location.href = "#accueil"; // Redirige vers le haut de la page
+      } else {
+        alert("❌ Une erreur est survenue. Réessayez.");
+      }
+    } catch (error) {
+      console.error("Erreur:", error);
+      alert("❌ Erreur réseau.");
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+  fetch('/api/enseignants-home')
+    .then(res => res.json())
+    .then(data => {
+      const slider = document.getElementById('enseignant-slider');
+
+      data.forEach(ens => {
+        const card = document.createElement('div');
+        card.className = 'teacher-card';
+        card.innerHTML = `
+          <img src="${ens.photo}" alt="Photo de ${ens.fullname}">
+          <h3>${ens.fullname}</h3>
+          <p><strong>Spécialité:</strong> ${ens.specialite}</p>
+          <p><strong>Qualification:</strong> ${ens.qualification}</p>
+          <p><strong>Ville:</strong> ${ens.ville}</p>
+          <p><em>"Un(e) enseignant(e) remarquable !"</em></p>
+          <a href="enseignant.html?id=${ens._id}" class="btn-recruter">Recruter</a>
+        `;
+        slider.appendChild(card);
+      });
+
+      // Défilement automatique
+      setInterval(() => {
+        slider.scrollBy({ left: 270, behavior: 'smooth' });
+      }, 3000);
+    })
+    .catch(err => console.error('Erreur chargement enseignants:', err));
+});
+
+</script>
+<script>
+  window.addEventListener("load", function () {
+    const loaderWrapper = document.getElementById("loader-wrapper");
+    if (loaderWrapper) {
+      loaderWrapper.style.opacity = 0;
+      setTimeout(() => loaderWrapper.style.display = "none", 500);
+    }
+  });
+</script>
+<script>
+  const toggleBtn = document.getElementById('toggle-dark-mode');
+  const body = document.body;
+
+  // Appliquer le mode stocké
+  if (localStorage.getItem('dark-mode') === 'true') {
+    body.classList.add('dark-mode');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDarkMode = body.classList.contains('dark-mode');
+    localStorage.setItem('dark-mode', isDarkMode);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Uploads (éviter de versionner les fichiers utilisateurs)
+uploads/cv/
+uploads/photos/
+
+# VS Code settings (si tu utilises VS Code)
+.vscode/

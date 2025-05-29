@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord Enseignant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/responsive.css" />
+
+
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --hover-color: #0056b3;
+      --danger-color: #dc3545;
+      --background: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--background);
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      background: linear-gradient(135deg, var(--primary-color), #004a99);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-2px);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 35px;
+      font-size: 2.2em;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .profile-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    .info-group {
+      margin-bottom: 15px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .info-group:hover {
+      background: #e9ecef;
+    }
+
+    .info-group strong {
+      color: var(--primary-color);
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.95em;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .btn-modifier {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-modifier:hover {
+      background: var(--hover-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+
+    .btn-deconnexion {
+      background: var(--danger-color);
+      color: white;
+    }
+
+    .btn-deconnexion:hover {
+      background: #bb2d3b;
+      transform: translateY(-2px);
+    }
+
+    #btnSupprimer {
+      background: var(--danger-color);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      margin: 20px auto;
+      display: block;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #btnSupprimer:hover {
+      transform: scale(1.05);
+      background: #bb2d3b;
+    }
+
+    @media (max-width: 768px) {
+      .profile-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      img {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader HTML -->
+<div id="loader-wrapper">
+  <div id="loader"></div>
+</div>
+
+  <nav>
+    <div style="font-weight: 600; font-size: 1.2em;">CoursDomicile</div>
+    <div><a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;"><i class="fas fa-home"></i>Accueil</a></div>
+  </nav>
+
+  <div class="container" id="dashboard">
+    <h2>📊 Tableau de bord</h2>
+    
+    <div class="profile-section">
+      <div>
+        <img id="photo" src="" alt="Photo de profil" />
+      </div>
+      <div>
+        <div class="info-group">
+          <strong>Nom complet</strong>
+          <span id="fullname">Jean Dupont</span>
+        </div>
+        <div class="info-group">
+          <strong>Email</strong>
+          <span id="email">jean.dupont@example.com</span>
+        </div>
+        <div class="info-group">
+          <strong>Téléphone</strong>
+          <span id="telephone">+33 6 12 34 56 78</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="additional-info">
+      <div class="info-group">
+        <strong>Spécialité</strong>
+        <span id="specialite">Mathématiques</span>
+      </div>
+      <div class="info-group">
+        <strong>Qualification</strong>
+        <span id="qualification">Master en Mathématiques Appliquées</span>
+      </div>
+      <div class="info-group">
+        <strong>Disponibilité</strong>
+        <span id="disponibilite">Lundi - Vendredi (9h - 18h)</span>
+      </div>
+      <div class="info-group">
+        <strong>Localisation</strong>
+        <span id="ville">Paris</span>, <span id="commune">75015</span>
+      </div>
+      <div class="info-group">
+        <strong>CV</strong>
+        <a id="cv" href="#" download class="btn-download"><i class="fas fa-download"></i>Télécharger</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-modifier" id="modifierBtn"><i class="fas fa-edit"></i>Modifier</button>
+    <button class="btn btn-deconnexion" id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Déconnexion</button>
+  </div>
+
+  <button id="btnSupprimer"><i class="fas fa-trash-alt"></i>Supprimer mon compte</button>
+
+  <script src="js/scriptDashboard.js"></script>
+</body>
+</html>
